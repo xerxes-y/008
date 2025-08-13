@@ -1,4 +1,4 @@
-# LLM-Powered QA System for Microservices Testing
+# 008-Agent: LLM-Powered QA System for Microservices Testing
 
 An intelligent QA system that uses LLM to automatically discover, test, and validate microservices in a Docker environment. The system can test REST APIs, Kafka message flows, and database operations, generating comprehensive test reports with input/output data.
 
@@ -47,7 +47,7 @@ An intelligent QA system that uses LLM to automatically discover, test, and vali
 
 ```bash
 git clone <repository-url>
-cd limbo
+cd 008-agent
 ```
 
 ### 2. Start the Infrastructure
