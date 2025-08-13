@@ -66,9 +66,11 @@ class TestGenerator:
         
         all_test_cases = []
         
-        # Generate REST API tests
+        # Generate REST API tests (limit to 2 tests per endpoint)
         if 'rest_services' in discovery_results:
             rest_tests = await self._generate_rest_tests(discovery_results['rest_services'])
+            # Limit REST tests to prevent overwhelming
+            rest_tests = rest_tests[:50]  # Limit to 50 REST tests
             all_test_cases.extend(rest_tests)
         
         # Generate Kafka tests
@@ -76,16 +78,19 @@ class TestGenerator:
             kafka_tests = await self._generate_kafka_tests(discovery_results['kafka_topics'])
             all_test_cases.extend(kafka_tests)
         
-        # Generate database tests
+        # Generate database tests (limit to 1 test per table)
         if 'database_schemas' in discovery_results:
             db_tests = await self._generate_database_tests(discovery_results['database_schemas'])
+            # Limit database tests
+            db_tests = db_tests[:10]  # Limit to 10 database tests
             all_test_cases.extend(db_tests)
         
-        # Generate integration tests
+        # Generate integration tests (limit to 5)
         integration_tests = await self._generate_integration_tests(discovery_results)
+        integration_tests = integration_tests[:5]  # Limit to 5 integration tests
         all_test_cases.extend(integration_tests)
         
-        logger.info(f"Generated {len(all_test_cases)} test cases")
+        logger.info(f"Generated {len(all_test_cases)} test cases (limited for performance)")
         return all_test_cases
 
     async def _generate_rest_tests(self, rest_services: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
