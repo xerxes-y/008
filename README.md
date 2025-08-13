@@ -47,7 +47,7 @@ An intelligent QA system that uses LLM to automatically discover, test, and vali
 
 ```bash
 git clone <repository-url>
-cd limbo
+cd 008
 ```
 
 ### 2. Start the Infrastructure
