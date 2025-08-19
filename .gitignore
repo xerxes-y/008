@@ -89,3 +89,10 @@ coverage.xml
 *.cover
 .hypothesis/
 .pytest_cache/
+
+# Maven
+target/
+*.jar
+*.war
+*.ear
+*.class
