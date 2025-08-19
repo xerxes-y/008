@@ -52,6 +52,11 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
       - ./init-scripts:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U qa_user -d qa_testing"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   redis:
     image: redis:7-alpine
@@ -121,6 +126,31 @@ services:
     volumes:
       - ./microservices/notification-service:/app
 
+  # Spring Boot Service
+  spring-boot-service:
+    build:
+      context: ./microservices/spring-boot-service
+      dockerfile: Dockerfile
+    container_name: spring-boot-service
+    ports:
+      - "8004:8004"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/qa_testing
+      - SPRING_DATASOURCE_USERNAME=qa_user
+      - SPRING_DATASOURCE_PASSWORD=qa_password
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:29092
+      - SPRING_REDIS_HOST=redis
+      - SPRING_REDIS_PORT=6379
+    depends_on:
+      postgres:
+        condition: service_healthy
+      kafka:
+        condition: service_started
+      redis:
+        condition: service_started
+    restart: unless-stopped
+
   # LLM QA Agent
   qa-agent:
     build:
@@ -141,6 +171,7 @@ services:
       - user-service
       - order-service
       - notification-service
+      - spring-boot-service
     volumes:
       - ./qa-agent:/app
       - ./test-results:/app/test-results

@@ -1,0 +1,8 @@
+/Users/khashayar/IdeaProjects/008/microservices/spring-boot-service/src/main/java/com/example/springbootservice/controller/ProductController.java
+/Users/khashayar/IdeaProjects/008/microservices/spring-boot-service/src/main/java/com/example/springbootservice/repository/ProductRepository.java
+/Users/khashayar/IdeaProjects/008/microservices/spring-boot-service/src/main/java/com/example/springbootservice/model/Product.java
+/Users/khashayar/IdeaProjects/008/microservices/spring-boot-service/src/main/java/com/example/springbootservice/config/KafkaConfig.java
+/Users/khashayar/IdeaProjects/008/microservices/spring-boot-service/src/main/java/com/example/springbootservice/service/ProductService.java
+/Users/khashayar/IdeaProjects/008/microservices/spring-boot-service/src/main/java/com/example/springbootservice/SpringBootServiceApplication.java
+/Users/khashayar/IdeaProjects/008/microservices/spring-boot-service/src/main/java/com/example/springbootservice/dto/ProductDto.java
+/Users/khashayar/IdeaProjects/008/microservices/spring-boot-service/src/main/java/com/example/springbootservice/kafka/ProductEventProducer.java

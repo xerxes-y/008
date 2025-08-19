@@ -1,0 +1,1147 @@
+{
+  "report_metadata": {
+    "generated_at": "2025-08-19T11:30:39.406474",
+    "total_tests": 22,
+    "report_version": "1.0"
+  },
+  "summary": {
+    "total_tests": 22,
+    "passed": 22,
+    "failed": 0,
+    "skipped": 0,
+    "success_rate": 100.0,
+    "total_execution_time": 40.3
+  },
+  "statistics": {
+    "total": 22,
+    "passed": 22,
+    "failed": 0,
+    "skipped": 0,
+    "success_rate": 100.0,
+    "total_time": 40.3,
+    "avg_time": 1.83,
+    "min_time": 0.01,
+    "max_time": 2.11,
+    "test_types": {
+      "kafka": {
+        "total": 20,
+        "passed": 20,
+        "failed": 0,
+        "skipped": 0
+      },
+      "rest_api": {
+        "total": 2,
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0
+      }
+    }
+  },
+  "failures": {
+    "total_failures": 0,
+    "failure_types": {},
+    "common_errors": [],
+    "failure_rate": 0.0
+  },
+  "coverage": {
+    "services_tested": [
+      "user-service"
+    ],
+    "endpoints_tested": [
+      "user-service:/health"
+    ],
+    "kafka_topics_tested": [
+      "order_events",
+      "qa-discovery",
+      "qa-test-results",
+      "qa-reports",
+      "notifications"
+    ],
+    "database_tables_tested": [],
+    "test_categories": [
+      "positive",
+      "negative"
+    ]
+  },
+  "performance": {
+    "performance_by_type": {
+      "kafka": {
+        "count": 20,
+        "total_time": 40.27,
+        "avg_time": 2.01,
+        "min_time": 2.0,
+        "max_time": 2.11
+      },
+      "rest_api": {
+        "count": 2,
+        "total_time": 0.03,
+        "avg_time": 0.02,
+        "min_time": 0.01,
+        "max_time": 0.02
+      }
+    },
+    "slow_tests": [],
+    "performance_thresholds": {
+      "slow_test_threshold": 10,
+      "very_slow_test_threshold": 30
+    }
+  },
+  "recommendations": [
+    {
+      "type": "warning",
+      "category": "coverage",
+      "title": "Limited Service Coverage",
+      "description": "Only 1 services are being tested.",
+      "action": "Add tests for untested services to improve coverage."
+    },
+    {
+      "type": "info",
+      "category": "coverage",
+      "title": "Missing Integration Tests",
+      "description": "No integration tests found in the test suite.",
+      "action": "Add integration tests to verify end-to-end workflows."
+    }
+  ],
+  "detailed_results": [
+    {
+      "status": "PASSED",
+      "message_sent": {
+        "topic": "order_events",
+        "partition": 0,
+        "offset": 8,
+        "data": {
+          "id": "luyj23gd",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        }
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "test_type": "kafka",
+      "test_case": {
+        "id": "kafka_order_events_positive_1",
+        "name": "Test Kafka topic order_events with valid message",
+        "type": "kafka",
+        "category": "positive",
+        "topic": "order_events",
+        "message_data": {
+          "id": "luyj23gd",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        },
+        "expected_processing": {
+          "status": "success"
+        },
+        "generated_by": "template"
+      },
+      "execution_time": 2.1148018836975098,
+      "timestamp": "2025-08-19T11:30:01.215106"
+    },
+    {
+      "status": "PASSED",
+      "message_sent": {
+        "topic": "order_events",
+        "partition": 0,
+        "offset": 9,
+        "data": {
+          "id": "m0su6mtv",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        }
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "test_type": "kafka",
+      "test_case": {
+        "id": "kafka_order_events_positive_2",
+        "name": "Test Kafka topic order_events with different message formats",
+        "type": "kafka",
+        "category": "positive",
+        "topic": "order_events",
+        "message_data": {
+          "id": "m0su6mtv",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        },
+        "expected_processing": {
+          "status": "success"
+        },
+        "generated_by": "template"
+      },
+      "execution_time": 2.0026962757110596,
+      "timestamp": "2025-08-19T11:30:03.217942"
+    },
+    {
+      "status": "PASSED",
+      "message_sent": {
+        "topic": "order_events",
+        "partition": 0,
+        "offset": 10,
+        "data": {
+          "id": "mn897pq9",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        }
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "test_type": "kafka",
+      "test_case": {
+        "id": "kafka_order_events_negative_1",
+        "name": "Test Kafka topic order_events with malformed message",
+        "type": "kafka",
+        "category": "negative",
+        "topic": "order_events",
+        "message_data": {
+          "id": "mn897pq9",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        },
+        "expected_processing": {
+          "status": "success"
+        },
+        "generated_by": "template"
+      },
+      "execution_time": 2.008870840072632,
+      "timestamp": "2025-08-19T11:30:05.227054"
+    },
+    {
+      "status": "PASSED",
+      "message_sent": {
+        "topic": "order_events",
+        "partition": 0,
+        "offset": 11,
+        "data": {
+          "id": "wl3yu8nu",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        }
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "test_type": "kafka",
+      "test_case": {
+        "id": "kafka_order_events_negative_2",
+        "name": "Test Kafka topic order_events with invalid schema",
+        "type": "kafka",
+        "category": "negative",
+        "topic": "order_events",
+        "message_data": {
+          "id": "wl3yu8nu",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        },
+        "expected_processing": {
+          "status": "success"
+        },
+        "generated_by": "template"
+      },
+      "execution_time": 2.007263660430908,
+      "timestamp": "2025-08-19T11:30:07.234502"
+    },
+    {
+      "status": "PASSED",
+      "message_sent": {
+        "topic": "qa-test-results",
+        "partition": 0,
+        "offset": 80,
+        "data": {
+          "id": "iqo3tnga",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        }
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "test_type": "kafka",
+      "test_case": {
+        "id": "kafka_qa-test-results_positive_1",
+        "name": "Test Kafka topic qa-test-results with valid message",
+        "type": "kafka",
+        "category": "positive",
+        "topic": "qa-test-results",
+        "message_data": {
+          "id": "iqo3tnga",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        },
+        "expected_processing": {
+          "status": "success"
+        },
+        "generated_by": "template"
+      },
+      "execution_time": 2.006920099258423,
+      "timestamp": "2025-08-19T11:30:09.241621"
+    },
+    {
+      "status": "PASSED",
+      "message_sent": {
+        "topic": "qa-test-results",
+        "partition": 0,
+        "offset": 81,
+        "data": {
+          "id": "fttii1ez",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        }
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "test_type": "kafka",
+      "test_case": {
+        "id": "kafka_qa-test-results_positive_2",
+        "name": "Test Kafka topic qa-test-results with different message formats",
+        "type": "kafka",
+        "category": "positive",
+        "topic": "qa-test-results",
+        "message_data": {
+          "id": "fttii1ez",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        },
+        "expected_processing": {
+          "status": "success"
+        },
+        "generated_by": "template"
+      },
+      "execution_time": 2.012826442718506,
+      "timestamp": "2025-08-19T11:30:11.254674"
+    },
+    {
+      "status": "PASSED",
+      "message_sent": {
+        "topic": "qa-test-results",
+        "partition": 0,
+        "offset": 82,
+        "data": {
+          "id": "tcurw22w",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        }
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "test_type": "kafka",
+      "test_case": {
+        "id": "kafka_qa-test-results_negative_1",
+        "name": "Test Kafka topic qa-test-results with malformed message",
+        "type": "kafka",
+        "category": "negative",
+        "topic": "qa-test-results",
+        "message_data": {
+          "id": "tcurw22w",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        },
+        "expected_processing": {
+          "status": "success"
+        },
+        "generated_by": "template"
+      },
+      "execution_time": 2.012913227081299,
+      "timestamp": "2025-08-19T11:30:13.267689"
+    },
+    {
+      "status": "PASSED",
+      "message_sent": {
+        "topic": "qa-test-results",
+        "partition": 0,
+        "offset": 83,
+        "data": {
+          "id": "j2cbfjm0",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        }
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "test_type": "kafka",
+      "test_case": {
+        "id": "kafka_qa-test-results_negative_2",
+        "name": "Test Kafka topic qa-test-results with invalid schema",
+        "type": "kafka",
+        "category": "negative",
+        "topic": "qa-test-results",
+        "message_data": {
+          "id": "j2cbfjm0",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        },
+        "expected_processing": {
+          "status": "success"
+        },
+        "generated_by": "template"
+      },
+      "execution_time": 2.0120482444763184,
+      "timestamp": "2025-08-19T11:30:15.280510"
+    },
+    {
+      "status": "PASSED",
+      "message_sent": {
+        "topic": "notifications",
+        "partition": 0,
+        "offset": 0,
+        "data": {
+          "id": "9sro08hw",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        }
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "test_type": "kafka",
+      "test_case": {
+        "id": "kafka_notifications_positive_1",
+        "name": "Test Kafka topic notifications with valid message",
+        "type": "kafka",
+        "category": "positive",
+        "topic": "notifications",
+        "message_data": {
+          "id": "9sro08hw",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        },
+        "expected_processing": {
+          "status": "success"
+        },
+        "generated_by": "template"
+      },
+      "execution_time": 2.010345458984375,
+      "timestamp": "2025-08-19T11:30:17.290906"
+    },
+    {
+      "status": "PASSED",
+      "message_sent": {
+        "topic": "notifications",
+        "partition": 0,
+        "offset": 1,
+        "data": {
+          "id": "7zuamwoc",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        }
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "test_type": "kafka",
+      "test_case": {
+        "id": "kafka_notifications_positive_2",
+        "name": "Test Kafka topic notifications with different message formats",
+        "type": "kafka",
+        "category": "positive",
+        "topic": "notifications",
+        "message_data": {
+          "id": "7zuamwoc",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        },
+        "expected_processing": {
+          "status": "success"
+        },
+        "generated_by": "template"
+      },
+      "execution_time": 2.0094172954559326,
+      "timestamp": "2025-08-19T11:30:19.300438"
+    },
+    {
+      "status": "PASSED",
+      "message_sent": {
+        "topic": "notifications",
+        "partition": 0,
+        "offset": 2,
+        "data": {
+          "id": "qoybo9dj",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        }
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "test_type": "kafka",
+      "test_case": {
+        "id": "kafka_notifications_negative_1",
+        "name": "Test Kafka topic notifications with malformed message",
+        "type": "kafka",
+        "category": "negative",
+        "topic": "notifications",
+        "message_data": {
+          "id": "qoybo9dj",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        },
+        "expected_processing": {
+          "status": "success"
+        },
+        "generated_by": "template"
+      },
+      "execution_time": 2.006999969482422,
+      "timestamp": "2025-08-19T11:30:21.307540"
+    },
+    {
+      "status": "PASSED",
+      "message_sent": {
+        "topic": "notifications",
+        "partition": 0,
+        "offset": 3,
+        "data": {
+          "id": "9boomfgk",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        }
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "test_type": "kafka",
+      "test_case": {
+        "id": "kafka_notifications_negative_2",
+        "name": "Test Kafka topic notifications with invalid schema",
+        "type": "kafka",
+        "category": "negative",
+        "topic": "notifications",
+        "message_data": {
+          "id": "9boomfgk",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        },
+        "expected_processing": {
+          "status": "success"
+        },
+        "generated_by": "template"
+      },
+      "execution_time": 2.0079262256622314,
+      "timestamp": "2025-08-19T11:30:23.315555"
+    },
+    {
+      "status": "PASSED",
+      "message_sent": {
+        "topic": "qa-discovery",
+        "partition": 0,
+        "offset": 4,
+        "data": {
+          "id": "qdhj2o4k",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        }
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "test_type": "kafka",
+      "test_case": {
+        "id": "kafka_qa-discovery_positive_1",
+        "name": "Test Kafka topic qa-discovery with valid message",
+        "type": "kafka",
+        "category": "positive",
+        "topic": "qa-discovery",
+        "message_data": {
+          "id": "qdhj2o4k",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        },
+        "expected_processing": {
+          "status": "success"
+        },
+        "generated_by": "template"
+      },
+      "execution_time": 2.0128068923950195,
+      "timestamp": "2025-08-19T11:30:25.328402"
+    },
+    {
+      "status": "PASSED",
+      "message_sent": {
+        "topic": "qa-discovery",
+        "partition": 0,
+        "offset": 5,
+        "data": {
+          "id": "1507glam",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        }
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "test_type": "kafka",
+      "test_case": {
+        "id": "kafka_qa-discovery_positive_2",
+        "name": "Test Kafka topic qa-discovery with different message formats",
+        "type": "kafka",
+        "category": "positive",
+        "topic": "qa-discovery",
+        "message_data": {
+          "id": "1507glam",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        },
+        "expected_processing": {
+          "status": "success"
+        },
+        "generated_by": "template"
+      },
+      "execution_time": 2.0052056312561035,
+      "timestamp": "2025-08-19T11:30:27.333764"
+    },
+    {
+      "status": "PASSED",
+      "message_sent": {
+        "topic": "qa-discovery",
+        "partition": 0,
+        "offset": 6,
+        "data": {
+          "id": "9q0our9u",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        }
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "test_type": "kafka",
+      "test_case": {
+        "id": "kafka_qa-discovery_negative_1",
+        "name": "Test Kafka topic qa-discovery with malformed message",
+        "type": "kafka",
+        "category": "negative",
+        "topic": "qa-discovery",
+        "message_data": {
+          "id": "9q0our9u",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        },
+        "expected_processing": {
+          "status": "success"
+        },
+        "generated_by": "template"
+      },
+      "execution_time": 2.0043885707855225,
+      "timestamp": "2025-08-19T11:30:29.338333"
+    },
+    {
+      "status": "PASSED",
+      "message_sent": {
+        "topic": "qa-discovery",
+        "partition": 0,
+        "offset": 7,
+        "data": {
+          "id": "52kstzsq",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        }
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "test_type": "kafka",
+      "test_case": {
+        "id": "kafka_qa-discovery_negative_2",
+        "name": "Test Kafka topic qa-discovery with invalid schema",
+        "type": "kafka",
+        "category": "negative",
+        "topic": "qa-discovery",
+        "message_data": {
+          "id": "52kstzsq",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        },
+        "expected_processing": {
+          "status": "success"
+        },
+        "generated_by": "template"
+      },
+      "execution_time": 2.004134178161621,
+      "timestamp": "2025-08-19T11:30:31.342536"
+    },
+    {
+      "status": "PASSED",
+      "message_sent": {
+        "topic": "qa-reports",
+        "partition": 0,
+        "offset": 5,
+        "data": {
+          "id": "esi20edm",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        }
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "test_type": "kafka",
+      "test_case": {
+        "id": "kafka_qa-reports_positive_1",
+        "name": "Test Kafka topic qa-reports with valid message",
+        "type": "kafka",
+        "category": "positive",
+        "topic": "qa-reports",
+        "message_data": {
+          "id": "esi20edm",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        },
+        "expected_processing": {
+          "status": "success"
+        },
+        "generated_by": "template"
+      },
+      "execution_time": 2.005852699279785,
+      "timestamp": "2025-08-19T11:30:33.348508"
+    },
+    {
+      "status": "PASSED",
+      "message_sent": {
+        "topic": "qa-reports",
+        "partition": 0,
+        "offset": 6,
+        "data": {
+          "id": "wtmeffbd",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        }
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "test_type": "kafka",
+      "test_case": {
+        "id": "kafka_qa-reports_positive_2",
+        "name": "Test Kafka topic qa-reports with different message formats",
+        "type": "kafka",
+        "category": "positive",
+        "topic": "qa-reports",
+        "message_data": {
+          "id": "wtmeffbd",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        },
+        "expected_processing": {
+          "status": "success"
+        },
+        "generated_by": "template"
+      },
+      "execution_time": 2.0056874752044678,
+      "timestamp": "2025-08-19T11:30:35.354241"
+    },
+    {
+      "status": "PASSED",
+      "message_sent": {
+        "topic": "qa-reports",
+        "partition": 0,
+        "offset": 7,
+        "data": {
+          "id": "ug3rsxc4",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        }
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "test_type": "kafka",
+      "test_case": {
+        "id": "kafka_qa-reports_negative_1",
+        "name": "Test Kafka topic qa-reports with malformed message",
+        "type": "kafka",
+        "category": "negative",
+        "topic": "qa-reports",
+        "message_data": {
+          "id": "ug3rsxc4",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        },
+        "expected_processing": {
+          "status": "success"
+        },
+        "generated_by": "template"
+      },
+      "execution_time": 2.008565902709961,
+      "timestamp": "2025-08-19T11:30:37.362880"
+    },
+    {
+      "status": "PASSED",
+      "message_sent": {
+        "topic": "qa-reports",
+        "partition": 0,
+        "offset": 8,
+        "data": {
+          "id": "euhm3d52",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        }
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": []
+      },
+      "test_type": "kafka",
+      "test_case": {
+        "id": "kafka_qa-reports_negative_2",
+        "name": "Test Kafka topic qa-reports with invalid schema",
+        "type": "kafka",
+        "category": "negative",
+        "topic": "qa-reports",
+        "message_data": {
+          "id": "euhm3d52",
+          "event_type": "test_event",
+          "timestamp": "2024-01-01T00:00:00Z",
+          "data": {
+            "message": "Test message",
+            "value": 123
+          }
+        },
+        "expected_processing": {
+          "status": "success"
+        },
+        "generated_by": "template"
+      },
+      "execution_time": 2.0114941596984863,
+      "timestamp": "2025-08-19T11:30:39.374576"
+    },
+    {
+      "status": "PASSED",
+      "request": {
+        "method": "GET",
+        "url": "http://user-service:8000/health",
+        "headers": {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        "params": {
+          "limit": 10,
+          "offset": 0
+        },
+        "body": null
+      },
+      "response": {
+        "status_code": 200,
+        "headers": {
+          "Date": "Tue, 19 Aug 2025 11:30:39 GMT",
+          "Server": "uvicorn",
+          "Content-Length": "117",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "status": "healthy",
+          "timestamp": "2025-08-19T11:30:39.397235",
+          "services": {
+            "database": "connected",
+            "redis": "connected"
+          }
+        }
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": [
+          "Missing expected field: data",
+          "Missing expected field: total",
+          "Missing expected field: page"
+        ]
+      },
+      "test_type": "rest_api",
+      "test_case": {
+        "id": "user-service__health_positive_1",
+        "name": "Test /health with valid GET request",
+        "type": "rest_api",
+        "category": "positive",
+        "service": "user-service",
+        "endpoint": "/health",
+        "method": "GET",
+        "url": "http://user-service:8000/health",
+        "request_data": {
+          "query_params": {
+            "limit": 10,
+            "offset": 0
+          }
+        },
+        "expected_response": {
+          "status_code": 200,
+          "body": {
+            "data": [],
+            "total": 0,
+            "page": 1
+          }
+        },
+        "generated_by": "template"
+      },
+      "execution_time": 0.024107694625854492,
+      "timestamp": "2025-08-19T11:30:39.398813"
+    },
+    {
+      "status": "PASSED",
+      "request": {
+        "method": "GET",
+        "url": "http://user-service:8000/health",
+        "headers": {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        "params": {
+          "limit": 10,
+          "offset": 0
+        },
+        "body": null
+      },
+      "response": {
+        "status_code": 200,
+        "headers": {
+          "Date": "Tue, 19 Aug 2025 11:30:39 GMT",
+          "Server": "uvicorn",
+          "Content-Length": "117",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "status": "healthy",
+          "timestamp": "2025-08-19T11:30:39.405631",
+          "services": {
+            "database": "connected",
+            "redis": "connected"
+          }
+        }
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "warnings": [
+          "Missing expected field: data",
+          "Missing expected field: total",
+          "Missing expected field: page"
+        ]
+      },
+      "test_type": "rest_api",
+      "test_case": {
+        "id": "user-service__health_positive_2",
+        "name": "Test /health with valid authentication",
+        "type": "rest_api",
+        "category": "positive",
+        "service": "user-service",
+        "endpoint": "/health",
+        "method": "GET",
+        "url": "http://user-service:8000/health",
+        "request_data": {
+          "query_params": {
+            "limit": 10,
+            "offset": 0
+          }
+        },
+        "expected_response": {
+          "status_code": 200,
+          "body": {
+            "data": [],
+            "total": 0,
+            "page": 1
+          }
+        },
+        "generated_by": "template"
+      },
+      "execution_time": 0.007355690002441406,
+      "timestamp": "2025-08-19T11:30:39.406212"
+    }
+  ]
+}

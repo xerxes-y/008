@@ -1,0 +1,12 @@
+com/example/springbootservice/dto/ProductDto.class
+com/example/springbootservice/dto/ProductCreateRequest.class
+com/example/springbootservice/kafka/ProductEventProducer$ProductEvent.class
+com/example/springbootservice/dto/ProductUpdateRequest.class
+com/example/springbootservice/model/Product.class
+com/example/springbootservice/controller/ProductController.class
+com/example/springbootservice/service/ProductService.class
+com/example/springbootservice/SpringBootServiceApplication.class
+com/example/springbootservice/kafka/ProductEventProducer.class
+com/example/springbootservice/repository/ProductRepository.class
+com/example/springbootservice/config/KafkaConfig.class
+com/example/springbootservice/kafka/ProductEventProducer$StockUpdateData.class

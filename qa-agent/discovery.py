@@ -20,7 +20,8 @@ class ServiceDiscovery:
         self.known_services = {
             'user-service': 'http://user-service:8000',
             'order-service': 'http://order-service:8000',
-            'notification-service': 'http://notification-service:8000'
+            'notification-service': 'http://notification-service:8000',
+            'spring-boot-service': 'http://spring-boot-service:8004'
         }
         
         # Common REST API patterns

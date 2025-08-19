@@ -47,6 +47,7 @@ echo "   Kafka UI:        http://localhost:8080"
 echo "   User Service:    http://localhost:8001"
 echo "   Order Service:   http://localhost:8002"
 echo "   Notification:    http://localhost:8003"
+echo "   Spring Boot:     http://localhost:8004"
 echo "   LLM API:         http://localhost:11434"
 echo ""
 
