@@ -1,0 +1,62 @@
+{
+  "test": {
+    "max_rest_tests": 20,
+    "max_kafka_tests": 15,
+    "max_database_tests": 5,
+    "max_integration_tests": 3,
+    "run_rest_tests": true,
+    "run_kafka_tests": true,
+    "run_database_tests": true,
+    "run_integration_tests": true,
+    "test_data_size": "small",
+    "include_negative_tests": true,
+    "include_performance_tests": false,
+    "rest_timeout": 30,
+    "kafka_timeout": 60,
+    "database_timeout": 30,
+    "integration_timeout": 120
+  },
+  "llm": {
+    "api_url": "http://llm-runner:11434/api",
+    "model_name": "llama2:7b",
+    "max_tokens": 2048,
+    "temperature": 0.7,
+    "timeout": 60
+  },
+  "services": {
+    "user_service_url": "http://user-service:8000",
+    "order_service_url": "http://order-service:8000",
+    "notification_service_url": "http://notification-service:8000",
+    "spring_boot_service_url": "http://spring-boot-service:8004",
+    "kafka_brokers": "kafka:29092",
+    "database_url": "postgresql://qa_user:qa_password@postgres:5432/qa_testing",
+    "redis_url": "redis://redis:6379"
+  },
+  "reporting": {
+    "output_dir": "test_results",
+    "report_format": "json",
+    "include_screenshots": false,
+    "include_logs": true,
+    "detailed_reporting": true,
+    "ci_mode": true,
+    "fail_fast": true,
+    "parallel_execution": true,
+    "max_workers": 4
+  },
+  "ci": {
+    "build_number": null,
+    "build_url": null,
+    "git_branch": null,
+    "git_commit": null,
+    "workspace": null,
+    "test_suite": "regression",
+    "environment": "ci",
+    "retry_failed": true,
+    "max_retries": 3,
+    "notify_on_failure": true,
+    "notify_on_success": false,
+    "slack_webhook": null,
+    "email_recipients": null
+  }
+}
+

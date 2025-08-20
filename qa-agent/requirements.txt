@@ -1,34 +1,59 @@
 # Core dependencies
 aiohttp==3.9.1
 asyncio==3.4.3
-
-# Database
 psycopg2-binary==2.9.9
 redis==5.0.1
-
-# Kafka
 kafka-python==2.0.2
 
-# HTTP client
-requests==2.31.0
+# LLM and AI (using local Ollama instead of cloud APIs)
 
-# JSON handling
-jsonschema==4.20.0
-
-# Logging and monitoring
-structlog==23.2.0
-
-# Date/time handling
-python-dateutil==2.8.2
-
-# Configuration
-python-dotenv==1.0.0
-
-# Testing utilities
+# Testing and validation
 pytest==7.4.3
 pytest-asyncio==0.21.1
+pytest-html==4.1.1
+pytest-xdist==3.5.0
 
-# Development tools
-black==23.11.0
-flake8==6.1.0
-mypy==1.7.1
+# Data processing
+pandas==2.1.4
+numpy==1.24.4
+
+# Configuration and utilities
+pyyaml==6.0.1
+python-dotenv==1.0.0
+click==8.1.7
+
+# Monitoring and logging
+structlog==23.2.0
+prometheus-client==0.19.0
+
+# HTTP and networking
+requests==2.31.0
+httpx==0.25.2
+
+# Database
+sqlalchemy==2.0.23
+alembic==1.13.1
+
+# JSON and serialization
+jsonschema==4.20.0
+marshmallow==3.20.1
+
+# Async utilities
+aiofiles==23.2.1
+asyncio-mqtt==0.16.1
+
+# Development and debugging
+ipython==8.17.2
+jupyter==1.0.0
+
+# CI/CD specific
+jenkinsapi==0.3.13
+gitpython==3.1.40
+
+# Performance testing
+locust==2.17.0
+pytest-benchmark==4.0.0
+
+# Security testing
+bandit==1.7.5
+safety==2.3.5
