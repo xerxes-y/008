@@ -27,6 +27,14 @@ pipeline {
         FAIL_FAST = 'true'
         PARALLEL_EXECUTION = 'true'
         MAX_WORKERS = '4'
+        
+        // Jira Integration Configuration
+        JIRA_BASE_URL = 'https://your-company.atlassian.net'
+        JIRA_USERNAME = 'your-email@company.com'
+        JIRA_API_TOKEN = 'your-jira-api-token'
+        JIRA_PROJECT_KEY = 'QA'
+        JIRA_ISSUE_TYPE = 'Test Execution'
+        JIRA_REPORTING_ENABLED = 'true'
     }
     
     stages {
@@ -259,6 +267,83 @@ pipeline {
             post {
                 always {
                     archiveArtifacts artifacts: "${TEST_OUTPUT_DIR}/**/*", allowEmptyArchive: true
+                }
+            }
+        }
+        
+        stage('Jira Reporting') {
+            when {
+                allOf {
+                    expression { env.JIRA_REPORTING_ENABLED == 'true' }
+                    anyOf {
+                        branch 'main'
+                        branch 'develop'
+                    }
+                }
+            }
+            steps {
+                script {
+                    // Ask user for Jira ticket if not provided
+                    def jiraTicket = input(
+                        message: 'Enter Jira ticket key for test results reporting',
+                        parameters: [
+                            string(
+                                name: 'JIRA_TICKET',
+                                defaultValue: '',
+                                description: 'Jira ticket key (e.g., QA-123) or leave empty to create new ticket'
+                            ),
+                            choice(
+                                name: 'REPORT_ACTION',
+                                choices: ['Create New Ticket', 'Update Existing Ticket', 'Skip Reporting'],
+                                description: 'Choose reporting action'
+                            )
+                        ]
+                    )
+                    
+                    // Check if we have test results to report
+                    if (fileExists("${TEST_OUTPUT_DIR}/test_report_*.json")) {
+                        def reportFile = sh(
+                            script: "ls -t ${TEST_OUTPUT_DIR}/test_report_*.json | head -1",
+                            returnStdout: true
+                        ).trim()
+                        
+                        // Report to Jira based on user choice
+                        if (jiraTicket.REPORT_ACTION == 'Create New Ticket') {
+                            echo "Creating new Jira ticket for test results..."
+                            sh '''
+                                cd qa-agent
+                                python jira_integration.py \
+                                    --test-results ../${reportFile} \
+                                    --build-number ${BUILD_NUMBER} \
+                                    --build-url ${BUILD_URL} \
+                                    --git-branch ${GIT_BRANCH} \
+                                    --git-commit ${GIT_COMMIT} \
+                                    --environment ci
+                            '''
+                        } else if (jiraTicket.REPORT_ACTION == 'Update Existing Ticket' && jiraTicket.JIRA_TICKET) {
+                            echo "Updating Jira ticket ${jiraTicket.JIRA_TICKET} with test results..."
+                            sh '''
+                                cd qa-agent
+                                python jira_integration.py \
+                                    --test-results ../${reportFile} \
+                                    --jira-ticket ${jiraTicket.JIRA_TICKET} \
+                                    --build-number ${BUILD_NUMBER} \
+                                    --build-url ${BUILD_URL} \
+                                    --git-branch ${GIT_BRANCH} \
+                                    --git-commit ${GIT_COMMIT} \
+                                    --environment ci
+                            '''
+                        } else {
+                            echo "Skipping Jira reporting as requested"
+                        }
+                    } else {
+                        echo "No test results found for Jira reporting"
+                    }
+                }
+            }
+            post {
+                always {
+                    echo "Jira reporting stage completed"
                 }
             }
         }

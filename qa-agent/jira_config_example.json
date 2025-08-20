@@ -1,0 +1,12 @@
+{
+  "base_url": "https://your-company.atlassian.net",
+  "username": "your-email@company.com",
+  "api_token": "your-jira-api-token",
+  "project_key": "QA",
+  "issue_type": "Test Execution",
+  "custom_fields": {
+    "customfield_10001": "Automated Test",
+    "customfield_10002": "High",
+    "customfield_10003": "QA Team"
+  }
+}
