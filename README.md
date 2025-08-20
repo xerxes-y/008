@@ -1,6 +1,6 @@
 # 008-Agent: LLM-Powered QA Automation Framework for Microservices
 
-An intelligent, production-ready QA automation framework that uses LLM to automatically discover, test, and validate microservices in CI/CD environments. The system provides comprehensive testing for REST APIs, Kafka message flows, and database operations, with advanced features for continuous integration and deployment pipelines.
+An intelligent, production-ready QA automation framework that uses LLM to automatically discover, test, and validate microservices in CI/CD environments. The system provides comprehensive testing for REST APIs, Kafka message flows, and database operations, with advanced features for continuous integration and deployment pipelines, including **full Jira integration** for test result reporting.
 
 ## 🏗️ Architecture
 
@@ -23,8 +23,8 @@ An intelligent, production-ready QA automation framework that uses LLM to automa
 │           └─────────────────────┼─────────────────────┘          │
 │                                 │                                │
 │  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐  │
-│  │ Result Reporter │  │ Jenkins Pipeline│  │ Docker Services │  │
-│  │ (Multi-format)  │  │ (Jenkinsfile)   │  │ (Microservices) │  │
+│  │ Result Reporter │  │ Jira Integration│  │ Jenkins Pipeline│  │
+│  │ (Multi-format)  │  │ (jira_integration)│  │ (Jenkinsfile)   │  │
 │  └─────────────────┘  └─────────────────┘  └─────────────────┘  │
 └─────────────────────────────────────────────────────────────────┘
                                 │
@@ -62,6 +62,14 @@ An intelligent, production-ready QA automation framework that uses LLM to automa
 - **📈 Test Suites**: Smoke, regression, and performance test suites
 - **🎯 Exit Codes**: Proper exit codes for CI/CD pipeline integration
 
+### **🎯 Jira Integration (NEW!)**
+- **📋 Interactive Ticket Selection**: Choose to create new tickets or update existing ones
+- **📊 Comprehensive Reporting**: Detailed test results with build information
+- **📎 File Attachments**: Automatic test report attachments to Jira tickets
+- **🔄 Real-time Updates**: Live test result updates with formatted comments
+- **⚙️ Flexible Configuration**: Environment variables or JSON configuration files
+- **🛡️ Error Handling**: Graceful handling of connection and authentication issues
+
 ### **Advanced Features**
 - **📊 Performance Analysis**: Identifies slow tests and performance bottlenecks
 - **🔧 Test Orchestration**: Centralized test execution management
@@ -76,6 +84,7 @@ An intelligent, production-ready QA automation framework that uses LLM to automa
 - **20GB free disk space**
 - **Python 3.8+** (for local development)
 - **Jenkins** (for CI/CD pipeline integration)
+- **Jira instance** (for test result reporting)
 
 ## 🛠️ Quick Start
 
@@ -125,7 +134,21 @@ cd qa-agent
 python3 main.py
 ```
 
-### 4. Verify Services
+### 4. Test Framework Integration
+
+```bash
+# Run comprehensive integration test
+cd qa-agent
+python3 test_complete_integration.py
+
+# Test Jira integration specifically
+python3 test_jira_integration.py
+
+# Validate framework structure
+python3 simple_test.py
+```
+
+### 5. Verify Services
 
 ```bash
 docker-compose ps
@@ -142,13 +165,69 @@ You should see:
 - ✅ notification-service
 - ✅ kafka-ui
 
-### 5. Access Services
+### 6. Access Services
 
 - **Kafka UI**: http://localhost:8080
 - **User Service**: http://localhost:8001
 - **Order Service**: http://localhost:8002
 - **Notification Service**: http://localhost:8003
 - **LLM API (Ollama)**: http://localhost:11434
+
+## 🎯 Jira Integration Setup
+
+### **1. Configure Jira Credentials**
+
+#### **Option A: Environment Variables (Recommended for Jenkins)**
+```bash
+export JIRA_BASE_URL="https://your-company.atlassian.net"
+export JIRA_USERNAME="your-email@company.com"
+export JIRA_API_TOKEN="your-jira-api-token"
+export JIRA_PROJECT_KEY="QA"
+export JIRA_ISSUE_TYPE="Test Execution"
+```
+
+#### **Option B: Configuration File**
+```json
+{
+  "base_url": "https://your-company.atlassian.net",
+  "username": "your-email@company.com",
+  "api_token": "your-jira-api-token",
+  "project_key": "QA",
+  "issue_type": "Test Execution"
+}
+```
+
+### **2. Test Jira Integration**
+
+```bash
+# Test with existing ticket
+python3 qa-agent/jira_integration.py \
+    --test-results test_results/test_report.json \
+    --jira-ticket QA-123 \
+    --build-number 456 \
+    --build-url "https://jenkins.company.com/job/456/" \
+    --git-branch main \
+    --git-commit abc123def
+
+# Create new ticket
+python3 qa-agent/jira_integration.py \
+    --test-results test_results/test_report.json \
+    --build-number 456 \
+    --build-url "https://jenkins.company.com/job/456/" \
+    --git-branch main \
+    --git-commit abc123def
+```
+
+### **3. Jenkins Pipeline Integration**
+
+The Jenkinsfile includes automatic Jira integration. When you run the pipeline:
+
+1. **Test execution completes** ✅
+2. **Jira Reporting stage starts** 🔄
+3. **Interactive prompt appears** asking for:
+   - Jira ticket key (e.g., QA-123) or leave empty for new ticket
+   - Reporting action: Create New / Update Existing / Skip
+4. **Results are reported** to Jira with full details 📊
 
 ## 🔧 Configuration
 
@@ -219,6 +298,13 @@ CI_MODE=true
 FAIL_FAST=true
 PARALLEL_EXECUTION=true
 MAX_WORKERS=4
+
+# Jira Configuration
+JIRA_BASE_URL=https://your-company.atlassian.net
+JIRA_USERNAME=your-email@company.com
+JIRA_API_TOKEN=your-jira-api-token
+JIRA_PROJECT_KEY=QA
+JIRA_ISSUE_TYPE=Test Execution
 ```
 
 ## 🚀 CI/CD Integration
@@ -232,6 +318,7 @@ The framework includes a complete Jenkins pipeline (`Jenkinsfile`) with:
 - **Artifact archiving** and test result publishing
 - **Environment-specific configurations**
 - **Failure notifications**
+- **🎯 Interactive Jira reporting** with ticket selection
 
 #### **Jenkins Setup**
 ```bash
@@ -246,7 +333,8 @@ The framework includes a complete Jenkins pipeline (`Jenkinsfile`) with:
 4. **Run Smoke Tests**: Quick validation tests
 5. **Run Full Test Suite**: Complete regression testing
 6. **Performance Tests**: Load and performance testing
-7. **Cleanup**: Resource cleanup and artifact archiving
+7. **🎯 Jira Reporting**: Interactive test result reporting
+8. **Cleanup**: Resource cleanup and artifact archiving
 
 ### **GitHub Actions Example**
 ```yaml
@@ -337,6 +425,49 @@ The framework generates comprehensive test reports:
 - **HTML**: Human-readable reports with charts and graphs
 - **XML**: JUnit-compatible format for CI tools
 
+### **🎯 Jira Integration Reports**
+
+#### **New Ticket Creation**
+- **Summary**: "QA Test Execution - X/Y passed"
+- **Description**: Build information and test summary
+- **Test Statistics**: Total tests, passed, failed, success rate
+- **Build Details**: Build number, URL, git branch, commit
+- **Attachment**: Complete test report JSON
+
+#### **Existing Ticket Update**
+- **Comment**: Detailed test results with formatting
+- **Test Suite Breakdown**: Results by test suite
+- **Failure Details**: First 5 failed tests with errors
+- **Build Information**: Current build details
+- **Attachment**: Updated test report
+
+#### **Example Jira Comment**
+```
+h3. Test Execution Results - 2024-12-01 12:00:00
+
+h4. Summary
+* Total Tests: 150
+* Passed: 142
+* Failed: 5
+* Skipped: 3
+* Success Rate: 94.67%
+
+h4. Build Information
+* Build Number: 456
+* Build URL: https://jenkins.company.com/job/456/
+* Git Branch: main
+* Git Commit: abc123def
+* Environment: ci
+
+h4. Test Suite Breakdown
+* smoke: 19/20 passed
+* regression: 123/130 passed
+
+h4. Failures (5)
+* User API Test: Connection timeout
+* Order Service Test: Database constraint violation
+```
+
 ## 🧪 Sample Microservices
 
 The project includes three sample microservices for testing:
@@ -370,14 +501,46 @@ The project includes three sample microservices for testing:
 5. **`test_generator.py`**: LLM-powered test generation
 6. **`test_executor.py`**: Test execution with retry logic
 7. **`result_reporter.py`**: Multi-format report generation
+8. **`jira_integration.py`**: 🎯 Jira integration for test result reporting
 
 ### **Supporting Files**
 
-- **`Jenkinsfile`**: Complete Jenkins pipeline definition
+- **`Jenkinsfile`**: Complete Jenkins pipeline definition with Jira integration
 - **`ci_config_example.json`**: Example configuration file
+- **`jira_config_example.json`**: 🎯 Example Jira configuration
 - **`test-jenkins-pipeline.sh`**: Local Jenkins testing script
 - **`simple_test.py`**: Basic framework validation
+- **`test_jira_integration.py`**: 🎯 Jira integration validation
+- **`test_complete_integration.py`**: 🎯 Complete end-to-end integration test
 - **`validate_framework.py`**: Comprehensive framework validation
+
+## 🧪 Testing and Validation
+
+### **Framework Testing**
+
+```bash
+# Run comprehensive integration test
+python3 qa-agent/test_complete_integration.py
+
+# Test Jira integration specifically
+python3 qa-agent/test_jira_integration.py
+
+# Validate framework structure
+python3 qa-agent/simple_test.py
+
+# Test complete framework validation
+python3 qa-agent/validate_framework.py
+```
+
+### **Test Results**
+
+✅ **All Integration Tests Passed (6/6)**
+- ✅ Framework Structure - All required files present
+- ✅ Configuration Management - ConfigManager working correctly
+- ✅ Jira Integration - All Jira components functional
+- ✅ Sample Workflow - Complete end-to-end workflow tested
+- ✅ Jenkins Integration - Pipeline integration ready
+- ✅ Command Line Tools - All CLI tools working
 
 ## 🐛 Troubleshooting
 
@@ -420,6 +583,16 @@ The project includes three sample microservices for testing:
    docker-compose logs jenkins
    ```
 
+5. **🎯 Jira Integration Issues**
+   ```bash
+   # Test Jira integration
+   python3 qa-agent/test_jira_integration.py
+   
+   # Check Jira credentials
+   curl -u "your-email@company.com:your-api-token" \
+        "https://your-company.atlassian.net/rest/api/2/myself"
+   ```
+
 ### **Performance Tuning**
 
 1. **Increase LLM Memory**
@@ -459,6 +632,7 @@ The project includes three sample microservices for testing:
 - Error patterns and frequencies
 - Parallel execution efficiency
 - Retry success rates
+- 🎯 Jira integration success rates
 
 ### **Log Analysis**
 
@@ -472,6 +646,9 @@ docker-compose logs user-service
 
 # Follow logs in real-time
 docker-compose logs -f
+
+# Monitor Jira integration
+grep "Jira issue" qa_automation.log
 ```
 
 ## 🔄 Advanced Usage
@@ -506,6 +683,25 @@ python3 ci_runner.py --report-format xml --output-dir junit-results
 python3 ci_runner.py --report-format html --output-dir html-reports
 ```
 
+### **🎯 Advanced Jira Integration**
+
+```bash
+# Report to specific Jira project
+export JIRA_PROJECT_KEY="PERF"
+python3 qa-agent/jira_integration.py --test-results report.json --build-number 123
+
+# Use custom issue type
+export JIRA_ISSUE_TYPE="Performance Test"
+python3 qa-agent/jira_integration.py --test-results report.json --build-number 123
+
+# Update existing ticket with custom config
+python3 qa-agent/jira_integration.py \
+    --test-results report.json \
+    --jira-ticket QA-789 \
+    --config-file custom_jira_config.json \
+    --build-number 123
+```
+
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -525,7 +721,8 @@ For issues and questions:
 1. Check the troubleshooting section
 2. Review the logs
 3. Run framework validation: `python3 validate_framework.py`
-4. Create an issue with detailed information
+4. Test Jira integration: `python3 test_jira_integration.py`
+5. Create an issue with detailed information
 
 ## 🔮 Future Enhancements
 
@@ -541,10 +738,12 @@ For issues and questions:
 - [ ] **Test Data Management**: Advanced test data generation and management
 - [ ] **Real-time Monitoring**: Live test execution monitoring
 - [ ] **Test Result Analytics**: Advanced analytics and insights
+- [ ] **🎯 Enhanced Jira Integration**: Bulk reporting, custom templates, webhooks
 
 ## 📚 Documentation
 
 - **[CI/CD Integration Guide](CI_CD_GUIDE.md)**: Detailed CI/CD setup and configuration
+- **[🎯 Jira Integration Guide](JIRA_INTEGRATION_GUIDE.md)**: Complete Jira integration guide
 - **[Kafka LLM Testing Guide](KAFKA_LLM_TESTING_GUIDE.md)**: Kafka-specific testing examples
 - **[Docker LLM Guide](framework/DOCKER_LLM_GUIDE.md)**: Docker and LLM setup guide
 - **[Jenkins Testing Summary](JENKINS_TESTING_SUMMARY.md)**: Jenkins pipeline testing guide
